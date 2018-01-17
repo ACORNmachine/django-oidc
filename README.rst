@@ -6,6 +6,7 @@ This module makes it easy to integrate OpenID Connect as an authentication sourc
 Behind the scenes, it uses Roland Hedberg's great pyoidc library.
 
 Modified by JHUAPL BOSS to support Python3
+
 Modified by Hackeningeer to suport django 2.0+
 
 Quickstart
