@@ -39,7 +39,7 @@ setup(
     ],
     include_package_data=True,
     install_requires=[
-        'django>=1.8',
+        'django>=2.0',
         'oic>=0.7.6',
     ],
     license="Apache Software License",
