@@ -66,7 +66,7 @@ class Client(oic.Client):
         logger.debug("resp_headers: %s" % ht_args)
         return resp
 
-    def callback(self, response, session):
+    def callback(self, response, session, **kwargs):
         """
         This is the method that should be called when an AuthN response has been
         received from the OP.
@@ -105,7 +105,8 @@ class Client(oic.Client):
 
                 atresp = self.do_access_token_request(
                     scope="openid", state=authresp["state"], request_args=args,
-                    authn_method=self.registration_response["token_endpoint_auth_method"])
+                    authn_method=self.registration_response["token_endpoint_auth_method"],
+                    **kwargs)
             except Exception as err:
                 logger.error("%s" % err)
                 raise
@@ -119,7 +120,7 @@ class Client(oic.Client):
             except:
                 pass
 
-        inforesp = self.do_user_info_request(state=authresp["state"], method="GET")
+        inforesp = self.do_user_info_request(state=authresp["state"], method="GET", **kwargs)
 
         if isinstance(inforesp, ErrorResponse):
             raise OIDCError("Invalid response %s." % inforesp["error"])
